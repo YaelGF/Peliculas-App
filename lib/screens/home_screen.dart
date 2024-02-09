@@ -19,12 +19,15 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: Column(
-          children: [
-            const SizedBox(height: 10),
-            CardSwiper(),
-            //const MovieSlider(),
-          ],
-        ));
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              CardSwiper(),
+              MovieSlider(),
+            ],
+          ),
+        )
+        );
   }
 }
