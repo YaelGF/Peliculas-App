@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -6,7 +7,8 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO: Cambiar por una instancia de pelicula
-    final String movie = ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
+    final String movie =
+        ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
 
     return Scaffold(
         body: CustomScrollView(
@@ -16,6 +18,10 @@ class DetailsScreen extends StatelessWidget {
           delegate: SliverChildListDelegate(
             [
               _PosterAndTitle(),
+              _Overview(),
+              _Overview(),
+              _Overview(),
+              CastingCards()
             ],
           ),
         ),
@@ -38,6 +44,7 @@ class _CustomAppBar extends StatelessWidget {
             title: Container(
               width: double.infinity,
               alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.only(bottom: 10),
               color: Colors.black12,
               child: const Text(
                 'movie.title',
@@ -70,15 +77,21 @@ class _PosterAndTitle extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('movie.title', style: textTheme.headlineSmall, overflow: TextOverflow.ellipsis, maxLines: 2),
-                Text('movie.originalTitle', style: textTheme.titleMedium, overflow: TextOverflow.ellipsis, maxLines: 2),
+                Text('movie.title',
+                    style: textTheme.headlineSmall,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2),
+                Text('movie.originalTitle',
+                    style: textTheme.titleMedium,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2),
                 Row(
                   children: [
-                    const Icon(Icons.star_outline, size: 15, color: Colors.grey),
+                    const Icon(Icons.star_outline,
+                        size: 15, color: Colors.grey),
                     const SizedBox(width: 5),
                     Text('movie.voteAverage', style: textTheme.bodySmall),
                   ],
@@ -87,5 +100,28 @@ class _PosterAndTitle extends StatelessWidget {
             )
           ],
         ));
+  }
+}
+
+class _Overview extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Sinopsis',
+              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
+          Text(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris eget nunc sed. arcu cursus. In nulla dolore excepteur aliquip ullamco officia. Reprehenderit occaecat duis exercitation elit nulla aute velit pariatur nostrud irure ea. Consectetur nostrud eiusmod magna proident aute ut sint nulla quis aliqua eu. Exercitation consequat ipsum ullamco est qui occaecat. Laborum nostrud cillum eiusmod Lorem non sunt cupidatat consectetur. Laborum anim cillum ullamco consectetur aliquip. Pariatur magna anim consequat nisi.',
+            style: Theme.of(context).textTheme.titleMedium,
+            textAlign: TextAlign.justify,
+            
+          ),
+        ],
+      ),
+    );
   }
 }
